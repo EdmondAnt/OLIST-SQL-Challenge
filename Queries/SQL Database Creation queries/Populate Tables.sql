@@ -12,19 +12,20 @@ BEGIN TRY
 BEGIN TRANSACTION;
 
 -- Insert first parent tables
+-- Warning: When running script, change Path to the actual location of files
 -- Use ROWTERMINATOR = '0x0a' because original csv files were created using unix-system.
 -- CODEPAGE = '65001' for UTF-8 encoding to read brasilian characters
 
-BULK INSERT olist.customers FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_customers_dataset.csv'
+BULK INSERT olist.customers FROM 'Path\OLIST Project\data\olist_customers_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.products FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_products_dataset.csv'
+BULK INSERT olist.products FROM 'Path\OLIST Project\data\olist_products_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.sellers FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_sellers_dataset.csv'
+BULK INSERT olist.sellers FROM 'Path\OLIST Project\data\olist_sellers_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.category_translation FROM 'C:\Dev\Python Projects\OLIST Project\data\product_category_name_translation.csv'
+BULK INSERT olist.category_translation FROM 'Path\OLIST Project\data\product_category_name_translation.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
 
@@ -39,28 +40,28 @@ SELECT
 FROM olist.geolocation;')
 
 BULK INSERT olist.vw_bulk_geolocation
-FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_geolocation_dataset.csv'
+FROM 'Path\OLIST Project\data\olist_geolocation_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a',CODEPAGE = '65001', TABLOCK );
 
 
-BULK INSERT olist.marketing_qualified_leads FROM 'C:\Dev\Python Projects\OLIST Project\data\Marketing funnel\olist_marketing_qualified_leads_dataset.csv'
+BULK INSERT olist.marketing_qualified_leads FROM 'Path\OLIST Project\data\Marketing funnel\olist_marketing_qualified_leads_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
 -- Insert child tables
-BULK INSERT olist.orders FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_orders_dataset.csv'
+BULK INSERT olist.orders FROM 'Path\OLIST Project\data\olist_orders_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.order_items FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_order_items_dataset.csv'
+BULK INSERT olist.order_items FROM 'Path\OLIST Project\data\olist_order_items_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
 BULK INSERT olist.payments 
-FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_order_payments_clean.csv'
+FROM 'Path\OLIST Project\data\olist_order_payments_clean.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.reviews FROM 'C:\Dev\Python Projects\OLIST Project\data\olist_order_reviews_clean.csv'
+BULK INSERT olist.reviews FROM 'Path\OLIST Project\data\olist_order_reviews_clean.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2,  ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
-BULK INSERT olist.closed_deals FROM 'C:\Dev\Python Projects\OLIST Project\data\Marketing funnel\olist_closed_deals_dataset.csv'
+BULK INSERT olist.closed_deals FROM 'Path\OLIST Project\data\Marketing funnel\olist_closed_deals_dataset.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, ROWTERMINATOR = '0x0a', CODEPAGE = '65001', TABLOCK );
 
 -- This verifies all expected row counts before making the transaction permanent.
